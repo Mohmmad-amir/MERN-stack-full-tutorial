@@ -1,12 +1,12 @@
-<div style="text-align:center; text-decoration:underline;">
-<h1>MERN stack Full Tutorial</h1>
+<center>
+<h1 style="text-decoration:underline;">MERN stack Full Tutorial</h1>
 <div style="background:#fff; padding:10px 5px; margin:10px 2px;">
 <img style="width:80px;" src="./icons/mongodb.png"/>
 <img style="width:80px;" src="./icons/expressjs.png"/>
 <img style="width:80px;" src="./icons/reactjs.png"/>
 <img style="width:80px;" src="./icons/nodejs.png"/>
 </div>
-</div>
+</center>
 <p>
 MERN belong to <br>
 M for <strong>MongoDB</strong>. Mongodb is a database. <br>

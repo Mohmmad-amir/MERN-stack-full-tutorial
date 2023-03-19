@@ -21,9 +21,12 @@ app.use(express.json())
 
 app.use(cookieParser())
 
+// routing
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
-
+// user route
+app.use('/users', require('./routes/userRoutes'))
+app.use('/notes', require('./routes/noteRoutes'))
 
 
 
@@ -48,7 +51,6 @@ mongoose.connection.once('open', () => {
     console.log('connected to Mongodb');
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 })
-
 
 
 mongoose.connection.on('error', err => {

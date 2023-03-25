@@ -7,7 +7,9 @@ const Welcome = () => {
             <p>{today}</p>
             <h1>Welcome!</h1>
             <p><Link to="/dash/notes">View techNotes</Link></p>
+            <p><Link to="/dash/notes/new">Add New techNotes</Link></p>
             <p><Link to="/dash/Users">View User Setting</Link></p>
+            <p><Link to="/dash/Users/new">Add New User</Link></p>
         </section>
     )
     return content;

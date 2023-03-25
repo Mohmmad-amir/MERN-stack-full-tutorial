@@ -7,7 +7,11 @@ import User from "./User";
 const UserList = () => {
     const {
         data: users, isLoading, isSuccess, isError, error
-    } = useGetUsersQuery()
+    } = useGetUsersQuery(undefined, {
+        pollingInterval: 60000,
+        refetchOnFocus: true,
+        refetchOnMountOrArgChange: true
+    })
     let content
     if (isLoading) content = <p>Loading.....!</p>
     if (isError) {

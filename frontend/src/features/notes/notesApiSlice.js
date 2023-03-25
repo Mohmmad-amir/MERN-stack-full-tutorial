@@ -17,7 +17,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
             ValidateStatus: (response, result) => {
                 return response.status === 200 && !result.isError
             },
-            keepUnusedDataFor: 5,
+            // keepUnusedDataFor: 5,
             transformResponse: responseData => {
                 const loadedNotes = responseData.map(note => {
                     note.id = note._id
@@ -37,11 +37,57 @@ export const notesApiSlice = apiSlice.injectEndpoints({
                 } else return [{ type: 'Note', id: 'LIST' }]
             }
         }),
+
+        /*insert note into database start*/
+        addNewNote: builder.mutation({
+            query: initialNote => ({
+                url: '/notes',
+                method: 'POST',
+                body: {
+                    ...initialNote,
+                }
+            }),
+            invalidatesTags: [
+                { type: 'Note', id: "LIST" }
+            ]
+        }),
+        /*insert note into database close*/
+        /*update note data into database start*/
+        updateNote: builder.mutation({
+            query: initialNoteData => ({
+                url: '/notes',
+                method: 'PATCH',
+                body: {
+                    ...initialNoteData,
+                }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Note', id: arg.id }
+            ]
+        }),
+        /*update note data into database end*/
+        /*delete note data from database start*/
+        deleteNote: builder.mutation({
+            query: ({ id }) => ({
+                url: `/notes`,
+                method: 'DELETE',
+                body: { id }
+            }),
+            invalidatesTags: (result, error, arg) => [
+                { type: 'Note', id: arg.id }
+            ]
+        }),
+        /*delete note data from database close*/
+
+
     }),
 })
 
 export const {
     useGetNotesQuery,
+    useAddNewNoteMutation,
+    useUpdateNoteMutation,
+    useDeleteNoteMutation,
 } = notesApiSlice
 
 export const selectNotesResult = notesApiSlice.endpoints.getNotes.select()
